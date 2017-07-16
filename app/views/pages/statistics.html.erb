@@ -1,0 +1,55 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-3">
+      <h3>Ranking de actores</h3>
+
+      <ul class="list-group">
+        <%- @actor_ranking.each_with_index do |actor, index| %>
+          <li class="list-group-item list-group-item-<%= actor.last %>">
+            <span class="badge"><%= "#{(actor.second * 100).round(0)}%" %></span>
+            <%= "#{actor.first}" %>
+          </li>
+        <%- end %>
+      </ul>
+    </div>
+
+    <div class="col-lg-3">
+      <h3>Ranking de directores</h3>
+
+      <ul class="list-group">
+        <%- @director_ranking.each_with_index do |director, index| %>
+          <li class="list-group-item list-group-item-<%= director.last %>">
+            <span class="badge"><%= "#{(director.second * 100).round(0)}%" %></span>
+            <%= "#{director.first}" %>
+          </li>
+        <%- end %>
+      </ul>
+    </div>
+
+    <div class="col-lg-3">
+      <h3>Ranking de generos</h3>
+
+      <ul class="list-group">
+        <%- @genre_ranking.each_with_index do |genre, index| %>
+          <li class="list-group-item list-group-item-<%= genre.last %>">
+            <span class="badge"><%= "#{(genre.second * 100).round(0)}%" %></span>
+            <%= "#{genre.first}" %>
+          </li>
+        <%- end %>
+      </ul>
+    </div>
+
+    <div class="col-lg-3">
+      <h3>Ranking de años</h3>
+
+      <ul class="list-group">
+        <%- @year_ranking.each_with_index do |movie_year, index| %>
+          <li class="list-group-item list-group-item-<%= movie_year.last %>">
+            <span class="badge"><%= "#{(movie_year.second * 100).round(0)}%" %></span>
+            <%= "#{movie_year.first}" %>
+          </li>
+        <%- end %>
+      </ul>
+    </div>
+  </div>
+</div>

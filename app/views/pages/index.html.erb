@@ -1,0 +1,41 @@
+<section class="container">
+  <div class="row">
+    <div class="col-lg-3">
+      <%= image_tag @movie[:poster] %>
+      <br>
+      <br>
+      <%= link_to like_path(@movie[:id]), class: "btn btn-success" do %>
+        <i class="icon-like"></i>
+      <% end %>
+
+      <%= link_to dislike_path(@movie[:id]), class: "btn btn-danger" do %>
+        <i class="icon-dislike"></i>
+      <% end %>
+
+      <%= link_to root_path, class: "btn btn-default" do %>
+        <i class="icon-arrow-right-circle"></i>
+      <% end %>
+    </div>
+    <div class="col-lg-6">
+      <div class="badge">
+        <%= @movie[:id] %>
+      </div>
+      <h1><%= @movie[:title] %></h1>
+      <p><%= @movie[:year] %></p>
+      <p><b>Director:</b> <%= @movie[:director] %></p>
+      <p><b>Duración:</b> <%= @movie[:duration] %> min</p>
+      <p><b>Actores:</b>
+        <ul>
+          <%- @movie[:actors].each do |actor| %>
+            <li> <%= actor %> </li>
+          <%- end %>
+        </ul>
+      </p>
+      <p><b>Generos:</b>
+        <%- @movie[:genres].each do |genre| %>
+          <span class="label label-primary"> <%= genre %> </span>
+        <%- end %>
+      </p>
+    </div>
+  </div>
+</section>
