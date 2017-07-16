@@ -1,0 +1,80 @@
+<section class="container">
+  <center><h1>Insertar link de imdb</h1></center>
+
+  <form style="width:100%" action="/predictions" method="get">
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Link de imdb" name="link">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="submit">Predecir</button>
+      </span>
+    </div>
+  </form>
+
+  <% if @movie %>
+    <div class="row">
+      <div class="col-lg-3">
+        <br>
+        <br>
+        <%= image_tag @movie[:poster] %>
+        <br>
+        <br>
+        <%= link_to predictions_like_path(link: "#{params[:link]}"), class: "btn btn-success" do %>
+          <i class="icon-like"></i>
+        <% end %>
+
+        <%= link_to predictions_dislike_path(link: "#{params[:link]}"), class: "btn btn-danger" do %>
+          <i class="icon-dislike"></i>
+        <% end %>
+      </div>
+      <div class="col-lg-6">
+        <h1><%= @movie[:title] %></h1>
+        <p><%= @movie[:year] %></p>
+        <p><b>Director:</b> <%= @movie[:director] %></p>
+        <p><b>Duración:</b> <%= @movie[:duration] %> min</p>
+        <p><b>Actores:</b>
+          <ul>
+            <%- @movie[:actors].each do |actor| %>
+              <li> <%= actor %> </li>
+            <%- end %>
+          </ul>
+        </p>
+        <p><b>Generos:</b>
+          <%- @movie[:genres].each do |genre| %>
+            <span class="label label-primary"> <%= genre %> </span>
+          <%- end %>
+        </p>
+      </div>
+      <div class="col-lg-3">
+        <h3>Director:</h3>
+        <%- if !@director.nil? %>
+          <div class="progress">
+            <div class="progress-bar progress-bar-<%= @director.valoration %>" role="progressbar" aria-valuenow="<%= (@director.prediction * 100).round(0) %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= (@director.prediction * 100).round(0) %>%;">
+              <%= (@director.prediction * 100).round(0) %>%
+            </div>
+          </div>
+        <%- else %>
+        <div class="progress">
+          <div class="progress-bar  progress-bar-danger" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+            0%
+          </div>
+          </div>
+        <% end %>
+
+        <h3>Año:</h3>
+        <%- if !@director.nil? %>
+          <div class="progress">
+            <div class="progress-bar progress-bar-<%= @year.valoration %>" role="progressbar" aria-valuenow="<%= (@year.prediction * 100).round(0) %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= (@year.prediction * 100).round(0) %>%;">
+              <%= (@year.prediction * 100).round(0) %>%
+            </div>
+          </div>
+        <%- else %>
+        <div class="progress">
+          <div class="progress-bar  progress-bar-danger" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+            0%
+          </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</section>

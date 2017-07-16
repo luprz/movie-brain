@@ -4,14 +4,15 @@
       <%= image_tag @movie[:poster] %>
       <br>
       <br>
-      <%= link_to like_path(@movie[:id]), class: "btn btn-success" do %>
-        <i class="icon-like"></i>
-      <% end %>
+      <%- if @movie_voted %>
+        <%= link_to like_path(@movie[:id]), class: "btn btn-success" do %>
+          <i class="icon-like"></i>
+        <% end %>
 
-      <%= link_to dislike_path(@movie[:id]), class: "btn btn-danger" do %>
-        <i class="icon-dislike"></i>
+        <%= link_to dislike_path(@movie[:id]), class: "btn btn-danger" do %>
+          <i class="icon-dislike"></i>
+        <% end %>
       <% end %>
-
       <%= link_to root_path, class: "btn btn-default" do %>
         <i class="icon-arrow-right-circle"></i>
       <% end %>
@@ -36,6 +37,13 @@
           <span class="label label-primary"> <%= genre %> </span>
         <%- end %>
       </p>
+    </div>
+    <div class="col-lg-3">
+      <div class="well">
+        <p>Evaluadas</p>
+        <h1><%= @movie_voted_count %></h1>
+        <p>de 5024 peliculas</p>
+      </div>
     </div>
   </div>
 </section>

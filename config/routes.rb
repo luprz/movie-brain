@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
+  get '/predictions', to: 'prediction#index', as: :predictions
+
   root 'pages#index'
 
   get '/like/:id', to: 'pages#like', as: :like
   get '/dislike/:id', to: 'pages#dislike', as: :dislike
+  get 'predictions/like', to: 'prediction#like', as: :predictions_like
+  get 'predictions/dislike', to: 'prediction#dislike', as: :predictions_dislike
   get '/statistics', to: 'pages#statistics', as: :statistics
 
   # The priority is based upon order of creation: first created -> highest priority.

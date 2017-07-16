@@ -76,4 +76,8 @@ module Librery
       GenreVote.create(genre_id: genre_current.id, output: output);
     end
   end
+
+  def movie_voted(movie_id, output)
+    MovieVoted.create(movie_id: movie_id, output: output)
+  end
 end
